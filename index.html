@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toni Salloum — Spécialiste en informatique | Cybersécurité</title>
+<meta name="description" content="Portfolio de Toni Salloum, spécialiste en informatique orienté cybersécurité, réseaux et développement web.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a0e14;
+    --bg-alt: #0e141c;
+    --panel: #121a24;
+    --panel-2: #0d1219;
+    --border: #1e2833;
+    --border-bright: #2a3846;
+    --text: #e7edf3;
+    --text-dim: #8a97a5;
+    --text-faint: #5a6674;
+    --blue: #3b9dff;
+    --blue-dim: #1b4a7a;
+    --cyan: #34e0c9;
+    --green: #46c76c;
+    --amber: #e0a638;
+    --red: #f2545b;
+
+    --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    --maxw: 1120px;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(59,157,255,0.07), transparent 40%),
+      radial-gradient(circle at 85% 15%, rgba(52,224,201,0.05), transparent 45%);
+  }
+
+  a{ color:inherit; text-decoration:none; }
+  ul{ list-style:none; }
+
+  ::selection{ background: var(--blue-dim); color: var(--text); }
+
+  :focus-visible{
+    outline: 2px solid var(--cyan);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .wrap{
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  .eyebrow{
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom: 18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:7px; height:7px;
+    background: var(--cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 8px 1px var(--cyan);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+
+  @keyframes pulse{
+    0%, 100%{ opacity:1; }
+    50%{ opacity:0.35; }
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position: sticky;
+    top:0;
+    z-index: 100;
+    background: rgba(10,14,20,0.82);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav{
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 16px 28px;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+  }
+  .logo{
+    font-family: var(--mono);
+    font-weight:700;
+    font-size:15px;
+    color: var(--text);
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .logo .bracket{ color: var(--blue); }
+  .navlinks{
+    display:flex;
+    gap: 6px;
+    font-family: var(--mono);
+    font-size: 13px;
+  }
+  .navlinks a{
+    color: var(--text-dim);
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: color .15s ease, background .15s ease;
+  }
+  .navlinks a:hover{ color: var(--text); background: var(--panel); }
+  .navlinks .tag{ color: var(--text-faint); }
+
+  #navToggle{ display:none; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding: 96px 0 88px;
+    border-bottom: 1px solid var(--border);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 56px;
+    align-items:center;
+  }
+  h1{
+    font-family: var(--mono);
+    font-weight:800;
+    font-size: clamp(34px, 5vw, 52px);
+    line-height:1.08;
+    letter-spacing:-0.01em;
+    margin-bottom: 18px;
+  }
+  h1 .accent{ color: var(--blue); }
+  .hero-sub{
+    color: var(--text-dim);
+    font-size: 17px;
+    max-width: 46ch;
+    margin-bottom: 34px;
+  }
+  .cta-row{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    font-family: var(--mono);
+    font-size: 13.5px;
+    font-weight:500;
+    padding: 13px 22px;
+    border-radius: 6px;
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
+    border: 1px solid transparent;
+  }
+  .btn-primary{
+    background: var(--blue);
+    color: #061019;
+  }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 8px 24px -8px rgba(59,157,255,0.55); }
+  .btn-ghost{
+    border-color: var(--border-bright);
+    color: var(--text);
+  }
+  .btn-ghost:hover{ border-color: var(--cyan); color: var(--cyan); transform: translateY(-2px); }
+
+  /* terminal */
+  .terminal{
+    background: var(--panel-2);
+    border: 1px solid var(--border-bright);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px -20px rgba(0,0,0,0.6);
+  }
+  .term-bar{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding: 11px 14px;
+    background: #0d1218;
+    border-bottom: 1px solid var(--border);
+  }
+  .term-dot{ width:10px; height:10px; border-radius:50%; }
+  .term-bar .term-title{
+    margin-left: 8px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-faint);
+  }
+  .term-body{
+    font-family: var(--mono);
+    font-size: 13.5px;
+    padding: 22px 20px 26px;
+    min-height: 220px;
+  }
+  .term-line{ margin-bottom: 14px; white-space: pre-wrap; word-break: break-word; }
+  .term-prompt{ color: var(--cyan); }
+  .term-out{ color: var(--text-dim); }
+  .term-ok{ color: var(--green); }
+  .cursor{
+    display:inline-block;
+    width: 8px; height: 15px;
+    background: var(--cyan);
+    margin-left: 2px;
+    animation: blink 1s steps(1) infinite;
+    vertical-align: text-bottom;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  /* ---------- SECTIONS ---------- */
+  section{ padding: 88px 0; border-bottom: 1px solid var(--border); }
+  section:last-of-type{ border-bottom:none; }
+
+  .section-head{ margin-bottom: 44px; }
+  h2{
+    font-family: var(--mono);
+    font-size: clamp(24px, 3vw, 30px);
+    font-weight:700;
+    display:flex;
+    align-items:baseline;
+    gap: 12px;
+  }
+  h2 .idx{ color: var(--text-faint); font-size: 16px; font-weight:500; }
+
+  .reveal{
+    opacity:0;
+    transform: translateY(18px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .reveal.in{ opacity:1; transform: translateY(0); }
+
+  /* about */
+  .about-body{
+    display:grid;
+    grid-template-columns: 1fr 280px;
+    gap: 48px;
+  }
+  .about-text p{ color: var(--text-dim); font-size: 16px; margin-bottom: 16px; max-width: 62ch; }
+  .about-text strong{ color: var(--text); font-weight:600; }
+
+  .infocard{
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    font-family: var(--mono);
+    font-size: 13px;
+  }
+  .infocard .row{
+    display:flex;
+    justify-content: space-between;
+    padding: 9px 0;
+    border-bottom: 1px dashed var(--border);
+    color: var(--text-dim);
+  }
+  .infocard .row:last-child{ border-bottom:none; }
+  .infocard .row span:last-child{ color: var(--text); text-align:right; }
+
+  .lang-bar{
+    height:5px; width:70px; background:var(--border); border-radius:3px; overflow:hidden;
+  }
+  .lang-bar i{ display:block; height:100%; background: var(--blue); }
+
+  /* skills */
+  .skills-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+  }
+  .skill-card{
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 20px 18px;
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .skill-card:hover{ border-color: var(--border-bright); transform: translateY(-3px); }
+  .skill-file{
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--cyan);
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .skill-card ul li{
+    color: var(--text-dim);
+    font-size: 14px;
+    padding: 5px 0;
+    display:flex;
+    align-items:center;
+    gap: 9px;
+  }
+  .skill-card ul li::before{
+    content:"";
+    width:5px; height:5px;
+    background: var(--blue);
+    border-radius:1px;
+    flex-shrink:0;
+  }
+
+  /* timeline (experience + education) */
+  .timeline{ position:relative; padding-left: 28px; }
+  .timeline::before{
+    content:"";
+    position:absolute;
+    left:5px; top:6px; bottom:6px;
+    width:1px;
+    background: var(--border-bright);
+  }
+  .tl-item{ position:relative; padding-bottom: 38px; }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-dot{
+    position:absolute;
+    left:-28px; top:4px;
+    width:11px; height:11px;
+    border-radius:50%;
+    background: var(--bg);
+    border: 2px solid var(--blue);
+  }
+  .tl-item.current .tl-dot{ background: var(--green); border-color: var(--green); box-shadow: 0 0 0 4px rgba(70,199,108,0.15); }
+  .tl-date{
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-faint);
+    margin-bottom: 6px;
+  }
+  .tl-role{ font-weight:700; font-size: 16.5px; margin-bottom: 2px; }
+  .tl-org{ color: var(--blue); font-size: 14px; margin-bottom: 10px; font-family: var(--mono); }
+  .tl-desc{ color: var(--text-dim); font-size: 14.5px; max-width: 62ch; }
+  .status-chip{
+    display:inline-block;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    color: var(--green);
+    border: 1px solid rgba(70,199,108,0.35);
+    background: rgba(70,199,108,0.08);
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+
+  .two-col{ display:grid; grid-template-columns: 1.3fr 1fr; gap: 60px; }
+  .col-title{
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 26px;
+  }
+
+  /* certifications */
+  .badge-grid{ display:flex; flex-wrap:wrap; gap: 12px; }
+  .badge{
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text);
+    border: 1px solid var(--border-bright);
+    background: var(--panel);
+    padding: 10px 16px;
+    border-radius: 8px;
+    display:flex;
+    align-items:center;
+    gap: 9px;
+    transition: border-color .2s ease, box-shadow .2s ease;
+  }
+  .badge:hover{ border-color: var(--amber); box-shadow: 0 0 0 1px rgba(224,166,56,0.15); }
+  .badge::before{ content:"◆"; color: var(--amber); font-size: 10px; }
+
+  /* projects */
+  .proj-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+  }
+  .proj-card{
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px;
+    position:relative;
+  }
+  .proj-card h3{
+    font-family: var(--mono);
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+  .proj-card p{ color: var(--text-dim); font-size: 13.5px; }
+  .soon{
+    position:absolute; top:18px; right:18px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--amber);
+    border: 1px solid rgba(224,166,56,0.4);
+    padding: 2px 7px;
+    border-radius: 20px;
+  }
+
+  /* contact */
+  .contact-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 16px;
+  }
+  .contact-card{
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    display:flex;
+    align-items:center;
+    gap: 14px;
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .contact-card:hover{ border-color: var(--blue); transform: translateY(-2px); }
+  .contact-card svg{ width:20px; height:20px; stroke: var(--blue); flex-shrink:0; }
+  .contact-card .label{ font-family: var(--mono); font-size: 11px; color: var(--text-faint); text-transform:uppercase; letter-spacing:.06em; }
+  .contact-card .value{ font-size: 14.5px; color: var(--text); word-break: break-word; }
+
+  footer{
+    padding: 32px 0 40px;
+    text-align:center;
+    color: var(--text-faint);
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 860px){
+    .hero-grid{ grid-template-columns: 1fr; }
+    .about-body{ grid-template-columns: 1fr; }
+    .two-col{ grid-template-columns: 1fr; gap: 44px; }
+    .navlinks{
+      position: fixed;
+      top: 61px; left:0; right:0;
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--border);
+      flex-direction: column;
+      padding: 8px;
+      gap:2px;
+      transform-origin: top;
+      transform: scaleY(0);
+      opacity:0;
+      transition: transform .18s ease, opacity .18s ease;
+    }
+    .navlinks.open{ transform: scaleY(1); opacity:1; }
+    .navlinks a{ padding: 12px 14px; }
+    #menuBtn{
+      display:flex;
+      align-items:center; justify-content:center;
+      width:36px; height:36px;
+      border:1px solid var(--border-bright);
+      border-radius:6px;
+      background:none;
+      color: var(--text);
+      cursor:pointer;
+    }
+  }
+  @media (min-width: 861px){ #menuBtn{ display:none; } }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo"><span class="bracket">[</span>toni.salloum<span class="bracket">]</span></div>
+    <button id="menuBtn" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
+    <div class="navlinks" id="navLinks">
+      <a href="#about">À propos</a>
+      <a href="#skills">Compétences</a>
+      <a href="#experience">Expérience</a>
+      <a href="#education">Formation</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Système en ligne — Disponible pour une alternance</div>
+      <h1>Toni Salloum<br><span class="accent">Spécialiste en informatique</span>, orienté cybersécurité.</h1>
+      <p class="hero-sub">Support technique, réseaux et développement web au quotidien — avec un cap clair vers le pentest et l'analyse SOC. Basé à Beyrouth, en route vers une spécialisation en France.</p>
+      <div class="cta-row">
+        <a href="TONI_SALLOUM_CV.pdf" class="btn btn-primary">Télécharger mon CV</a>
+        <a href="#contact" class="btn btn-ghost">Me contacter</a>
+      </div>
+    </div>
+    <div class="terminal" role="img" aria-label="Terminal simulant une commande whoami affichant le statut de Toni Salloum">
+      <div class="term-bar">
+        <span class="term-dot" style="background:#f2545b"></span>
+        <span class="term-dot" style="background:#e0a638"></span>
+        <span class="term-dot" style="background:#46c76c"></span>
+        <span class="term-title">toni@portfolio: ~</span>
+      </div>
+      <div class="term-body" id="termBody"></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2><span class="idx">01/</span> À propos</h2>
+    </div>
+    <div class="about-body">
+      <div class="about-text reveal">
+        <p>Titulaire d'une <strong>licence en informatique</strong>, je dispose de bases solides en systèmes, réseaux, programmation et cybersécurité. Mon parcours académique et mes expériences professionnelles m'ont permis de développer des compétences concrètes en <strong>administration système et réseau</strong>, en <strong>support informatique</strong> et en <strong>développement web</strong>.</p>
+        <p>Je souhaite aujourd'hui poursuivre mes études en France afin d'approfondir mes connaissances théoriques et pratiques, et construire un vrai projet professionnel autour de la cybersécurité — du pentest à l'analyse SOC — ou du cloud.</p>
+      </div>
+      <div class="infocard reveal">
+        <div class="row"><span>Localisation</span><span>Beyrouth, Liban</span></div>
+        <div class="row"><span>Né le</span><span>17.06.1996</span></div>
+        <div class="row"><span>Nationalité</span><span>Libanaise</span></div>
+        <div class="row"><span>Arabe</span><span><div class="lang-bar"><i style="width:100%"></i></div></span></div>
+        <div class="row"><span>Français</span><span><div class="lang-bar"><i style="width:60%"></i></div></span></div>
+        <div class="row"><span>Anglais</span><span><div class="lang-bar"><i style="width:60%"></i></div></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2><span class="idx">02/</span> Compétences</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-file">~/skills/dev.sh</div>
+        <ul>
+          <li>HTML5 / CSS3</li>
+          <li>JavaScript</li>
+          <li>PHP</li>
+          <li>C</li>
+          <li>WordPress</li>
+        </ul>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-file">~/skills/systemes.sh</div>
+        <ul>
+          <li>Windows</li>
+          <li>Active Directory</li>
+          <li>VMware</li>
+          <li>Hyper-V</li>
+          <li>PowerShell</li>
+        </ul>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-file">~/skills/reseaux.sh</div>
+        <ul>
+          <li>Cisco (CCNA/CCNP)</li>
+          <li>TCP/IP</li>
+          <li>LAN / WAN</li>
+          <li>Administration réseau</li>
+        </ul>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-file">~/skills/cloud.sh</div>
+        <ul>
+          <li>Microsoft Azure</li>
+        </ul>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-file">~/skills/cybersecurite.sh</div>
+        <ul>
+          <li>SOC (Certified SOC Analyst — EC-Council)</li>
+          <li>Ethical Hacking</li>
+          <li>Sensibilisation phishing / anti-spam</li>
+          <li>Antivirus &amp; protection poste</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2><span class="idx">03/</span> Expérience professionnelle</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item current reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-date">2025 — Présent <span class="status-chip">EN COURS</span></div>
+        <div class="tl-role">Développeur WordPress</div>
+        <div class="tl-org">CSB Group</div>
+        <div class="tl-desc">Conception, personnalisation et maintenance de sites WordPress responsives, en appliquant les fondamentaux du développement web et du design adaptatif.</div>
+      </div>
+      <div class="tl-item current reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-date">2023 — Présent <span class="status-chip">EN COURS</span></div>
+        <div class="tl-role">Formateur — Réseaux et Systèmes d'Exploitation</div>
+        <div class="tl-org">CSB Academy</div>
+        <div class="tl-desc">Formation d'élèves en baccalauréat technique (BT1, BT2, BT3) en algorithmique, mathématiques, HTML et langage C, ainsi qu'en réseaux et systèmes d'exploitation.</div>
+      </div>
+      <div class="tl-item current reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-date">2022 — Présent <span class="status-chip">EN COURS</span></div>
+        <div class="tl-role">Spécialiste IT | Technicien de support technique</div>
+        <div class="tl-org">CSB Group</div>
+        <div class="tl-desc">Support technique avancé en matériel, logiciel et réseau, avec diagnostic et résolution d'incidents systèmes et de sécurité.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap two-col">
+    <div>
+      <div class="section-head reveal">
+        <h2><span class="idx">04/</span> Formation</h2>
+      </div>
+      <div class="timeline">
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2022 — 2024</div>
+          <div class="tl-role">Licence en informatique</div>
+          <div class="tl-org">American University of Culture and Education (AUCE) — Badaro, Beyrouth</div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2021 — 2022</div>
+          <div class="tl-role">TS2 — Management des systèmes d'information</div>
+          <div class="tl-org">Institut technique Al Amal — Sarafand</div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2020 — 2021</div>
+          <div class="tl-role">TS1 — Management des systèmes d'information</div>
+          <div class="tl-org">Institut technique Al Amal — Sarafand</div>
+        </div>
+      </div>
+    </div>
+    <div id="certifications">
+      <div class="section-head reveal">
+        <h2><span class="idx">05/</span> Certifications</h2>
+      </div>
+      <div class="badge-grid reveal">
+        <span class="badge">Azure Cloud 900/104</span>
+        <span class="badge">Certified SOC Analyst (CSA) — EC-Council</span>
+        <span class="badge">Cyber Security Ethical Hacking</span>
+        <span class="badge">CCNP (350-401, 300-410)</span>
+        <span class="badge">CCNA (WAN / LAN)</span>
+        <span class="badge">MCSA 2016</span>
+        <span class="badge">DELF B2</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2><span class="idx">06/</span> Contact</h2>
+    </div>
+    <div class="contact-grid">
+      <a class="contact-card reveal" href="mailto:toni-salloum@hotmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg>
+        <div><div class="label">Email</div><div class="value">toni-salloum@hotmail.com</div></div>
+      </a>
+      <a class="contact-card reveal" href="tel:+96170803962">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.79.66 2.65a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.43-1.27a2 2 0 0 1 2.11-.45c.86.32 1.75.54 2.65.66A2 2 0 0 1 22 16.92z"/></svg>
+        <div><div class="label">Téléphone</div><div class="value">+961 70 803 962</div></div>
+      </a>
+      <div class="contact-card reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div><div class="label">Localisation</div><div class="value">Beyrouth, Liban</div></div>
+      </div>
+      <a class="contact-card reveal" href="#" aria-label="Profil LinkedIn — lien à compléter">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V8h4v1.5A5.98 5.98 0 0 1 16 8z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        <div><div class="label">LinkedIn</div><div class="value">Toni Salloum</div></div>
+      </a>
+      <a class="contact-card reveal" href="#" aria-label="Profil GitHub — lien à compléter">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        <div><div class="label">GitHub</div><div class="value">github.com/tonisalloum</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 Toni Salloum — Construit avec HTML, CSS &amp; JavaScript.</div>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  menuBtn?.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open);
+  });
+  navLinks?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', false);
+  }));
+
+  // Scroll reveal
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const revealEls = document.querySelectorAll('.reveal');
+  if (reduceMotion) {
+    revealEls.forEach(el => el.classList.add('in'));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+  }
+
+  // Terminal boot sequence
+  const termBody = document.getElementById('termBody');
+  const lines = [
+    { prompt: '$ whoami', out: 'toni_salloum', cls: 'term-out' },
+    { prompt: '$ status --check', out: '[ONLINE] Ouvert aux opportunités — Alternance Cybersécurité', cls: 'term-ok' },
+    { prompt: '$ cat base_competences.txt', out: 'Systèmes · Réseaux · Programmation · Cybersécurité', cls: 'term-out' },
+    { prompt: '$ objectif --2026', out: 'Spécialisation cybersécurité en France (pentest / SOC) ou cloud', cls: 'term-ok' }
+  ];
+
+  function renderStatic() {
+    termBody.innerHTML = lines.map(l =>
+      `<div class="term-line"><span class="term-prompt">${l.prompt}</span></div><div class="term-line ${l.cls}">${l.out}</div>`
+    ).join('') + '<span class="cursor"></span>';
+  }
+
+  if (reduceMotion) {
+    renderStatic();
+  } else {
+    let li = 0;
+    function typeLine() {
+      if (li >= lines.length) return;
+      const { prompt, out, cls } = lines[li];
+      const promptEl = document.createElement('div');
+      promptEl.className = 'term-line';
+      const promptSpan = document.createElement('span');
+      promptSpan.className = 'term-prompt';
+      promptEl.appendChild(promptSpan);
+      termBody.appendChild(promptEl);
+
+      let i = 0;
+      const typePrompt = setInterval(() => {
+        promptSpan.textContent = prompt.slice(0, ++i);
+        if (i >= prompt.length) {
+          clearInterval(typePrompt);
+          setTimeout(() => {
+            const outEl = document.createElement('div');
+            outEl.className = 'term-line ' + cls;
+            outEl.textContent = out;
+            termBody.appendChild(outEl);
+            li++;
+            setTimeout(typeLine, 380);
+          }, 180);
+        }
+      }, 22);
+    }
+    typeLine();
+    setTimeout(() => {
+      const cursor = document.createElement('span');
+      cursor.className = 'cursor';
+      termBody.appendChild(cursor);
+    }, lines.length * 900 + 400);
+  }
+</script>
+
+</body>
+</html>
